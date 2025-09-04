@@ -28,7 +28,7 @@ This is a modern URL Shortener web application built with **React** and **Vite**
 
 ## 📂 Project Structure
 
-
+```
 demo1/
 │
 ├── public/
@@ -55,7 +55,7 @@ demo1/
 ├── package.json
 ├── vite.config.js
 └── README.md
-
+```
 ---
 
 ## Getting Started
