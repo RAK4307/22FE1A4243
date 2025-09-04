@@ -1,56 +1,62 @@
-🔗 URL Shortener (React + Vite)
+# 🔗 URL Shortener (React + Vite)
 
-This is a React + Vite based URL Shortener web application.
+This is a modern URL Shortener web application built with **React** and **Vite**. It allows users to create, manage, and track shortened URLs directly in their browser.
 
-## Features
+---
 
-- Generate short URLs with custom shortcodes
-- View and manage stored URLs
-- Validate if a link is active or expired
-- View statistics like click count, expiry date, and click logs
-- Track clicks and referrer sources
-- Local storage to persist data
-- Simple, modern UI with Chakra UI
+## ✨ Features
 
-## Project Structure
+-   **Generate Short URLs**: Quickly create short links with optional custom shortcodes.
+-   **Manage Links**: View all your stored URLs in a clean, organized table.
+-   **Link Validation**: Automatically checks if a link is active or expired.
+-   **Click Statistics**: See detailed stats including total click count, expiry date, and individual click logs.
+-   **Referrer Tracking**: Track the source of your clicks to understand your audience.
+-   **Persistent Storage**: Uses browser LocalStorage to save your data, so you don't lose it on refresh.
+-   **Modern UI**: A simple and intuitive interface built with **Chakra UI**.
 
+---
+
+## 🛠️ Tech Stack
+
+-   **Frontend**: React (Vite)
+-   **Styling**: Chakra UI, CSS
+-   **State Management**: React Context API & Hooks
+-   **Storage**: Browser LocalStorage
+-   **Linting**: ESLint
+
+---
+
+## 📂 Project Structure
+
+```text
 demo1/
 │
 ├── public/
-│ └── vite.svg
+│   └── vite.svg
 ├── src/
-│ ├── components/
-│ │ ├── URLform.jsx
-│ │ ├── URLTable.jsx
-│ │ └── Stats.jsx
-│ ├── context/
-│ │ └── AppContext.jsx
-│ ├── hooks/
-│ │ └── userLogger.jsx
-│ ├── pages/
-│ │ ├── Home/
-│ │ │ ├── Home.jsx
-│ │ │ └── Home.css
-│ │ ├── Redirect/
-│ │ │ ├── RedirectHandler.jsx
-│ │ │ └── RedirectHandler.css
-│ │ └── StatsPage.jsx
-│ ├── utils/
-│ │ ├── Storage/
-│ │ │ ├── storage.jsx
-│ │ │ └── storage.css
-│ │ └── Validator/
-│ │ ├── Validator.jsx
-│ │ └── validator.css
-│ ├── App.jsx
-│ ├── main.jsx
-│ ├── index.css
-│ └── App.css
+│   ├── components/
+│   │   ├── URLform.jsx
+│   │   ├── URLTable.jsx
+│   │   └── Stats.jsx
+│   ├── context/
+│   │   └── AppContext.jsx
+│   ├── hooks/
+│   │   └── userLogger.jsx
+│   ├── pages/
+│   │   ├── Home/
+│   │   ├── Redirect/
+│   │   └── StatsPage.jsx
+│   ├── utils/
+│   │   ├── Storage/
+│   │   └── Validator/
+│   ├── App.jsx
+│   └── main.jsx
 ├── index.html
 ├── package.json
 ├── vite.config.js
-├── eslint.config.js
 └── README.md
+
+
 
 ## Tech Stack
 
@@ -81,14 +87,13 @@ demo1/
    ```
 
 ## Screenshots
+
 <img width="1601" height="862" alt="image" src="https://github.com/user-attachments/assets/148a89e1-4e83-4093-9ec3-6f49ca5c899d" />
 
 <img width="1249" height="585" alt="image" src="https://github.com/user-attachments/assets/53bffc78-cdec-431f-889a-1eca6c47e30c" />
 
 
 <img width="777" height="465" alt="image" src="https://github.com/user-attachments/assets/15d5838f-82e1-4b84-a31d-1469f885f6dc" />
-
-
 
 
 ## Submission Details
