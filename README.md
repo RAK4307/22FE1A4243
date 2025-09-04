@@ -81,8 +81,14 @@ demo1/
    ```
 
 ## Screenshots
+<img width="1601" height="862" alt="image" src="https://github.com/user-attachments/assets/148a89e1-4e83-4093-9ec3-6f49ca5c899d" />
 
-Add screenshots here to show key features:
+<img width="1249" height="585" alt="image" src="https://github.com/user-attachments/assets/53bffc78-cdec-431f-889a-1eca6c47e30c" />
+
+<img width="777" height="465" alt="image" src="https://github.com/user-attachments/assets/15d5838f-82e1-4b84-a31d-1469f885f6dc" />
+
+
+
 
 ## Submission Details
 
