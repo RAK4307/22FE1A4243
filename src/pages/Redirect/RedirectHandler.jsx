@@ -1,90 +1,107 @@
 // src/pages/RedirectHandler.jsx
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import {
-  Container,
-  Spinner,
-  Text,
-  VStack,
-  Heading,
-  Alert,
-  AlertIcon,
-} from "@chakra-ui/react";
-import { AppContext } from "../context/AppContext";
-
-// In a real application, this would fetch from your backend API
-const fetchOriginalUrl = async (shortCode, apiUrl) => {
-  console.log(`Fetching original URL for ${shortCode} from ${apiUrl}`);
-  // Example: const response = await fetch(`${apiUrl}/${shortCode}`);
-  // if (response.status === 404) throw new Error("Short URL not found.");
-  // if (!response.ok) throw new Error("Failed to fetch URL.");
-  // const data = await response.json();
-  // return data.originalUrl;
-
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (shortCode === "abcdef") {
-        resolve("https://chakra-ui.com/docs/components");
-      } else {
-        reject(new Error("Short URL not found. You will be redirected shortly."));
-      }
-    }, 1000);
-  });
-};
+import { AppContext } from "../../context/Appcontext";
+import "./RedirectHandler.css";
 
 function RedirectHandler() {
   const { shortCode } = useParams();
-  const { apiUrl } = useContext(AppContext);
   const navigate = useNavigate();
   const [error, setError] = useState(null);
+  const [expired, setExpired] = useState(false);
+  const { state, dispatch } = useContext(AppContext);
 
   useEffect(() => {
-    const performRedirect = async () => {
-      if (!shortCode) {
-        navigate("/");
-        return;
-      }
-
+    // Custom logger (replace with your own if needed)
+    const logError = (msg) => {
       try {
-        const originalUrl = await fetchOriginalUrl(shortCode, apiUrl);
-        // Perform the redirect. `replace` is better than `assign`
-        // as it doesn't leave the redirector page in the session history.
-        window.location.replace(originalUrl);
-      } catch (err) {
-        setError(err.message);
-        // Redirect to home page after a delay
-        setTimeout(() => {
-          navigate("/");
-        }, 3000);
-      }
+        const logs = JSON.parse(localStorage.getItem("clickLogs") || "[]");
+        logs.push({ type: "error", message: msg, timestamp: new Date().toISOString() });
+        localStorage.setItem("clickLogs", JSON.stringify(logs));
+      } catch {}
+      console.error(msg);
     };
 
-    performRedirect();
-    // We only want this to run once on mount.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (!shortCode) {
+      logError("No shortcode provided in route params.");
+      navigate("/", { state: { error: "No shortcode provided." } });
+      return;
+    }
+
+    // Retrieve URL from context
+    const urlObj = state.urls.find((u) => u.shortCode === shortCode);
+
+    if (!urlObj) {
+      logError(`Shortcode '${shortCode}' not found.`);
+      setError("Short URL not found. You will be redirected shortly.");
+      setTimeout(() => {
+        navigate("/", { state: { error: "Short URL not found." } });
+      }, 3000);
+      return;
+    }
+
+    // Check expiration
+    if (urlObj.expiresAt && new Date() > new Date(urlObj.expiresAt)) {
+      setExpired(true);
+      logError(`Shortcode '${shortCode}' has expired.`);
+      return;
+    }
+
+    // Track click
+    const clickRecord = {
+      timestamp: new Date().toISOString(),
+      source: document.referrer || "Direct",
+    };
+
+    dispatch({
+      type: "LOG_CLICK",
+      payload: { shortCode, clickRecord },
+    });
+
+    // Redirect
+    window.location.href = urlObj.longUrl;
+  }, [shortCode, navigate, state.urls, dispatch]);
+
+  const shortUrlDisplay = (
+    <div className="short-url-display">
+      {window.location.host + window.location.pathname}
+    </div>
+  );
 
   if (error) {
     return (
-      <Container centerContent minH="80vh" display="flex" alignItems="center" justifyContent="center">
-        <VStack spacing={4} textAlign="center">
-          <Heading size="lg">Oops! Invalid Link</Heading>
-          <Alert status="error" borderRadius="lg" maxW="md">
-            <AlertIcon />
-            {error}
-          </Alert>
-        </VStack>
-      </Container>
+      <div className="redirect-container">
+        <div className="message-box error">
+          {shortUrlDisplay}
+          <h2 className="message-title error">Oops! Invalid Link</h2>
+          <div className="message-text error">{error}</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (expired) {
+    return (
+      <div className="redirect-container">
+        <div className="message-box expired">
+          {shortUrlDisplay}
+          <h2 className="message-title expired">This link has expired</h2>
+          <div className="message-text expired">
+            The link you are trying to access has expired.
+          </div>
+        </div>
+      </div>
     );
   }
 
   return (
-    <Container centerContent minH="80vh" display="flex" alignItems="center" justifyContent="center">
-      <VStack spacing={4}>
-        <Spinner size="xl" />
-        <Text fontSize="lg">Redirecting you...</Text>
-      </VStack>
-    </Container>
+    <div className="redirect-container">
+      <div className="redirect-content">
+        {shortUrlDisplay}
+        <div className="spinner"></div>
+        <div className="redirect-message">Redirecting...</div>
+      </div>
+    </div>
   );
 }
 

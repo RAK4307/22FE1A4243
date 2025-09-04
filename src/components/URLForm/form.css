@@ -1,0 +1,75 @@
+/* src/components/URLForm/form.css - Professional styling for URLForm */
+
+.url-form {
+  width: 100%;
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 32px rgba(44, 44, 84, 0.1);
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 1.08rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.required-asterisk {
+  color: #e53e3e;
+  margin-left: 2px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.08rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fafbfc;
+  color: #333;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border: 1.5px solid #2196f3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+}
+
+.form-error {
+  color: #e53e3e;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.form-submit-btn {
+  width: 100%;
+  background: #1da1f2;
+  color: white;
+  padding: 1rem 0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.18rem;
+  font-weight: 700;
+  transition: background 0.2s, box-shadow 0.2s;
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 12px rgba(29, 161, 242, 0.1);
+}
+
+.form-submit-btn:hover {
+  background: #2196f3;
+  box-shadow: 0 4px 16px rgba(29, 161, 242, 0.15);
+}

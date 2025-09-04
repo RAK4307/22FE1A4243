@@ -1,0 +1,84 @@
+/* src/pages/Redirect/RedirectHandler.css - Styling for the redirect page */
+
+.redirect-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.redirect-content {
+  text-align: center;
+}
+
+.short-url-display {
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  color: #2196f3;
+  font-size: 1.1rem;
+  word-break: break-all;
+}
+
+/* Spinner for loading state */
+.spinner {
+  margin: 2rem auto;
+  width: 48px;
+  height: 48px;
+  border: 6px solid #eee;
+  border-top-color: #2196f3;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.redirect-message {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Message box for error and expired states */
+.message-box {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.message-title {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.message-text {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Error state styles */
+.message-box.error {
+  border: 1px solid #f44336;
+  background: #fff0f0;
+}
+.message-title.error,
+.message-text.error {
+  color: #d32f2f;
+}
+
+/* Expired state styles */
+.message-box.expired {
+  border: 1px solid #ff9800;
+  background: #fff8e1;
+}
+.message-title.expired,
+.message-text.expired {
+  color: #ef6c00;
+}
