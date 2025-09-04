@@ -56,15 +56,7 @@ demo1/
 ├── vite.config.js
 └── README.md
 
-
-
-## Tech Stack
-
-- Frontend: React (Vite)
-- Styling: Chakra UI, CSS
-- State Management: React Context, Hooks
-- Storage: Browser LocalStorage
-- Tools: ESLint
+---
 
 ## Getting Started
 
