@@ -62,7 +62,7 @@ demo1/
 
 1. Clone the Repository
    ```sh
-   git clone https://github.com/<your-username>/22FE1A4243.git
+   git clone https://github.com/RAK4307/22FE1A4243.git
    cd demo1
    ```
 2. Install Dependencies
